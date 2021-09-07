@@ -31,8 +31,12 @@ module.exports = {
     },
     //webpack-dev-serverの起動設定
   devServer: {
-    contentBase: path.resolve(__dirname, "./"),
-    publicPath: "/dist/",
+    static: {
+      directory: path.join(__dirname, './'),
+    },
+    devMiddleware: {
+      publicPath: "/dist/"
+    },
     host: "127.0.0.1",
     port: 9000,
     open: true

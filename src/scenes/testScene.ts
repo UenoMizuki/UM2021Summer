@@ -1,23 +1,17 @@
 import { KeyManager } from "../utils/keymanager";
 import { SceneManager } from "../utils/sceneManager";
-import { TestScene } from "./testScene";
+import { TitleScene } from "./titleScene";
 
-export class TitleScene extends Phaser.Scene {
+export class TestScene extends Phaser.Scene {
     constructor() {
         //識別ID設定のみ
         super({
-            key: "TitleScene"
+            key: "TestScene"
         });
     }
 
     init():void{
-        console.log("init : titleScene");
-        SceneManager.init(this);
-        KeyManager.init(this);
-        KeyManager.replaceKey("DOWN","S");
-        KeyManager.replaceKey("UP","W");
-        KeyManager.replaceKey("LEFT","A");
-        KeyManager.replaceKey("RIGHT","D");
+        console.log("init : testScene");
     }
     //本来はこのメソッドで、画像ファイルなどのロード
     preload(): void {
@@ -33,16 +27,15 @@ export class TitleScene extends Phaser.Scene {
     private static num:integer =0
     create():void {
         this.cameras.main.setBackgroundColor(this.bk_color)
-        this.startText = this.add.text(parseInt(this.game.config.width.toString())/2, parseInt(this.game.config.height.toString())/2, ('Title'+TitleScene.num++), this.fontStyle)
+        
+        this.startText = this.add.text(parseInt(this.game.config.width.toString())/2, parseInt(this.game.config.height.toString())/2, ('Test'+TestScene.num++), this.fontStyle)
         
 
         this.startText.setOrigin(0.5)
         this.startText.setInteractive()
         this.startText
         this.startText.on('pointerdown', () => {
-            //this.scene.start('TitleScene')
-            SceneManager.set("TestScene",TestScene,this);
-            console.log("clicked");
+            SceneManager.set("TitleScene",TitleScene,this);
         })
 
         
@@ -58,12 +51,12 @@ export class TitleScene extends Phaser.Scene {
 
             this.ellipse.y+=5;
         }
-        if(KeyManager.isDown("RIGHT")){
+        if(KeyManager.isDown("LEFT")){
 
             this.ellipse.x+=5;
         }
-        if(KeyManager.isDown("LEFT")){
-
+        if(KeyManager.isDown("RIGHT")){
+            console.log("right");
             this.ellipse.x-=5;
         }
     }

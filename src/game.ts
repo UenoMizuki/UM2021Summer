@@ -4,7 +4,7 @@ import { TitleScene } from "./scenes/titleScene";
 
 //ゲームの基本設定
 const config: Phaser.Types.Core.GameConfig = {
-    title: "botMonster",    //タイトル
+    title: "Title",    //タイトル
     version: "0.0.1",       //バージョン
     width: 1280,             //画面幅
     height: 720,            //画面高さ
